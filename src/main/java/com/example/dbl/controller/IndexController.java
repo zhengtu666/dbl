@@ -1,5 +1,8 @@
 package com.example.dbl.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date: 2019/12/1
  */
 @RestController
+
 public class IndexController {
 
     @RequestMapping("/test")
