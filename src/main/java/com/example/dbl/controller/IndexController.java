@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,10 +42,10 @@ public class IndexController {
     }
 
 
-    @RequestMapping("/getQRCode")
-    public void getQRCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping("/getQRCode/{categoryId}")
+    public void getQRCode(HttpServletRequest request, HttpServletResponse response,@PathVariable Long categoryId) throws Exception {
         //二维码中包含的信息
-        String content = "https://bang.duia.com";
+        String content = "https://bang.rd.duia.com/wap/jc/"+categoryId;
         Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
         // 指定编码格式
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
