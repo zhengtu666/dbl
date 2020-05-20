@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,17 +43,17 @@ public class IndexController {
     }
 
 
-    @RequestMapping("/getQRCode/{categoryId}")
-    public void getQRCode(HttpServletRequest request, HttpServletResponse response,@PathVariable Long categoryId) throws Exception {
+    @RequestMapping("/getQRCode")
+    @PostMapping
+    public void getQRCode(HttpServletRequest request, HttpServletResponse response, String url) throws Exception {
         //二维码中包含的信息
-        String content = "https://bang.rd.duia.com/wap/jc/"+categoryId;
         Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
         // 指定编码格式
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
         // 指定纠错级别(L--7%,M--15%,Q--25%,H--30%)
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
         // 编码内容,编码类型(这里指定为二维码),生成图片宽度,生成图片高度,设置参数
-        BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, 200, 200, hints);
+        BitMatrix bitMatrix = new MultiFormatWriter().encode(url, BarcodeFormat.QR_CODE, 200, 200, hints);
         //设置请求头
         response.setHeader("Content-Type","image/jpg");
         response.setHeader("Content-Disposition", "inline;filename=" + "二维码.jpg");
