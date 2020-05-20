@@ -11,10 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,20 +28,13 @@ import java.util.Map;
 @Controller
 public class IndexController {
 
-    @RequestMapping("/test")
+    @GetMapping("/test")
     public String test(){
         return "ok";
     }
 
-    @RequestMapping("/test1")
-    public String test(ModelAndView model,String ct){
-        System.out.println(ct);
-        return "test";
-    }
 
-
-    @RequestMapping("/getQRCode")
-    @PostMapping
+    @PostMapping("/getQRCode")
     public void getQRCode(HttpServletRequest request, HttpServletResponse response, String url) throws Exception {
         //二维码中包含的信息
         Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
