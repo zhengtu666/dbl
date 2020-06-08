@@ -46,7 +46,7 @@ public class IndexController {
     }
 
 
-    @PostMapping("/getQRCode")
+    @GetMapping("/getQRCode")
     public void getQRCode(HttpServletRequest request, HttpServletResponse response, String url) throws Exception {
         //二维码中包含的信息
         Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
